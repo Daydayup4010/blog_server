@@ -5,6 +5,3 @@ type Config struct {
 	Logger Logger `yaml:"logger"`
 	System System `yaml:"system"`
 }
-
-type test struct {
-}
