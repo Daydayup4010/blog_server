@@ -5,9 +5,9 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func SettingRouter(engine *gin.Engine) {
+func SettingRouter(group *gin.RouterGroup) {
 	settingApi := api.ApiGroupApp.SettingApi
-	settingGroup := engine.Group("api/setting")
+	settingGroup := group.Group("/setting")
 	{
 		settingGroup.GET("/info", settingApi.GetSettingInfo)
 	}

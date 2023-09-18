@@ -1,10 +1,10 @@
 package setting_api
 
 import (
+	"blog_server/models/res"
 	"github.com/gin-gonic/gin"
-	"net/http"
 )
 
 func (SettingApi) GetSettingInfo(ctx *gin.Context) {
-	ctx.JSON(http.StatusOK, gin.H{"msg": "success"})
+	res.Ok(map[string]any{"id": 131}, "success", ctx)
 }
