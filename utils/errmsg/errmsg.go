@@ -18,6 +18,7 @@ const (
 	ERROR_CATEGORY_NOT_EXIST = 20002
 
 	// code = 3000xxx 分类模块的错误
+	ERROR_ARTICLE_NOT_EXIST = 30001
 )
 
 var codeMsg = map[int]string{
@@ -32,6 +33,7 @@ var codeMsg = map[int]string{
 	ERROR_TOKEN_TYPE_WRONG:   "TOKEN格式错误",
 	ERROR_CATEGORYNAME_USED:  "分类名重复",
 	ERROR_CATEGORY_NOT_EXIST: "此分类不存在",
+	ERROR_ARTICLE_NOT_EXIST:  "此文章不存在",
 }
 
 func GetErrMsg(code int) string {

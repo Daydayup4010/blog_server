@@ -29,5 +29,15 @@ func InitRouter() *gin.Engine {
 		cate.DELETE(":id", v1.DeleteCategory)
 		cate.PUT(":id", v1.UpdateCategory)
 	}
+
+	// 文章模块的接口
+	art := router.Group("article")
+	{
+		art.POST("add", v1.AddArt)
+		art.GET("info", v1.GetCategoryInfo)
+		art.GET("list", v1.GetArtList)
+		art.DELETE(":id", v1.DeleteArt)
+		art.PUT(":id", v1.UpdateArt)
+	}
 	return r
 }
