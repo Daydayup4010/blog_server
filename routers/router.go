@@ -24,7 +24,6 @@ func InitRouter() *gin.Engine {
 	cate := router.Group("category")
 	{
 		cate.POST("add", v1.AddCategory)
-		cate.GET("info", v1.GetCategoryInfo)
 		cate.GET("list", v1.GetCategoryList)
 		cate.DELETE(":id", v1.DeleteCategory)
 		cate.PUT(":id", v1.UpdateCategory)
@@ -34,10 +33,11 @@ func InitRouter() *gin.Engine {
 	art := router.Group("article")
 	{
 		art.POST("add", v1.AddArt)
-		art.GET("info", v1.GetCategoryInfo)
 		art.GET("list", v1.GetArtList)
+		art.GET("info", v1.GetArtInfo)
 		art.DELETE(":id", v1.DeleteArt)
 		art.PUT(":id", v1.UpdateArt)
+		art.GET("category/:id/list", v1.GetCateArtList)
 	}
 	return r
 }

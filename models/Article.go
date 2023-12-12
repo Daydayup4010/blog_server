@@ -26,10 +26,34 @@ func CreateArt(art *Article) int {
 	return errmsg.SUCCESS
 }
 
+// GetArtInfo 查询单个文章信息
+func GetArtInfo(id int) (Article, int) {
+	var art Article
+	err := global.DB.Preload("Category").Where("id = ?", id).First(&art).Error
+	if err != nil {
+		return art, errmsg.ERROR_ARTICLE_NOT_EXIST
+	}
+	return art, errmsg.SUCCESS
+}
+
+// GetCateArtLis 获取分类下的文章列表
+func GetCateArtLis(cid int, pageSize int, pageNum int) ([]Article, int) {
+	var cateArt []Article
+	err := global.DB.Preload("Category").Limit(pageSize).Offset((pageNum-1)*pageSize).Where("cid = ?", cid).Find(&cateArt).Error
+	if err != nil {
+		return cateArt, errmsg.ERROR
+	}
+	return cateArt, errmsg.SUCCESS
+
+}
+
 // GetArtList 获取文章列表
 func GetArtList(pageSize int, pageNum int) ([]Article, int) {
 	var arts []Article
-	global.DB.Preload("Category").Limit(pageSize).Offset((pageNum - 1) * pageSize).Find(&arts)
+	err := global.DB.Preload("Category").Limit(pageSize).Offset((pageNum - 1) * pageSize).Find(&arts).Error
+	if err != nil {
+		return nil, errmsg.ERROR
+	}
 	return arts, errmsg.SUCCESS
 }
 

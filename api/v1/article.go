@@ -21,7 +21,37 @@ func AddArt(c *gin.Context) {
 
 }
 
-// 查询文章详情信息
+// GetArtInfo 查询文章详情信息
+func GetArtInfo(c *gin.Context) {
+	id, _ := strconv.Atoi(c.Query("id"))
+	art, code := models.GetArtInfo(id)
+	c.JSON(http.StatusOK, gin.H{
+		"code": code,
+		"data": art,
+		"msg":  errmsg.GetErrMsg(code),
+	})
+}
+
+// GetCateArtList 查询分类下的文章列表
+func GetCateArtList(c *gin.Context) {
+	pageSize, _ := strconv.Atoi(c.Query("pageSize"))
+	pageNum, _ := strconv.Atoi(c.Query("pageNum"))
+	cid, _ := strconv.Atoi(c.Param("id"))
+	if pageSize == 0 {
+		pageSize = -1
+	}
+	if pageNum == 0 {
+		pageNum = -1
+	}
+	list, code := models.GetCateArtLis(cid, pageSize, pageNum)
+	c.JSON(http.StatusOK, gin.H{
+		"code":  code,
+		"data":  list,
+		"total": len(list),
+		"msg":   errmsg.GetErrMsg(code),
+	})
+
+}
 
 // GetArtList 查询文章列表
 func GetArtList(c *gin.Context) {

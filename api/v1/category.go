@@ -30,15 +30,15 @@ func AddCategory(c *gin.Context) {
 }
 
 // GetCategoryInfo 查询分类详情信息
-func GetCategoryInfo(c *gin.Context) {
-	id, _ := strconv.Atoi(c.Query("id"))
-	info, code := models.GetUserInfo(id)
-	c.JSON(http.StatusOK, gin.H{
-		"code":    code,
-		"data":    info,
-		"message": errmsg.GetErrMsg(code),
-	})
-}
+//func GetCategoryInfo(c *gin.Context) {
+//	id, _ := strconv.Atoi(c.Query("id"))
+//	info, code := models.GetUserInfo(id)
+//	c.JSON(http.StatusOK, gin.H{
+//		"code":    code,
+//		"data":    info,
+//		"message": errmsg.GetErrMsg(code),
+//	})
+//}
 
 // GetCategoryList 获取分类列表
 func GetCategoryList(c *gin.Context) {
