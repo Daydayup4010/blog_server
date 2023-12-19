@@ -16,7 +16,7 @@ func InitGorm() {
 	}
 	dsn := global.CONFIG.Mysql.Dsn()
 	var mysqlLogger logger.Interface
-	if global.CONFIG.System.Env == "dev" {
+	if global.CONFIG.Server.Env == "dev" {
 		// 开发者环境显示所有sql
 		mysqlLogger = logger.Default.LogMode(logger.Info)
 	} else {

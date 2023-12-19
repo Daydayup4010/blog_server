@@ -28,6 +28,22 @@ func ScryptPw(password string) string {
 	return pw
 }
 
+// VerifyLogin 登录验证
+func VerifyLogin(username string, password string) int {
+	var user User
+	global.DB.Where("username = ?", username).First(&user)
+	if user.ID == 0 {
+		return errmsg.ERROR_USER_NOT_EXIST
+	}
+	if ScryptPw(password) != user.Password {
+		return errmsg.ERROR_PASSWORD_WRONG
+	}
+	if user.Role != 0 {
+		return errmsg.ERROR_USER_NO_PERMISSION
+	}
+	return errmsg.SUCCESS
+}
+
 // BeforeSave 钩子函数
 func (user *User) BeforeSave(db *gorm.DB) error {
 	user.Password = ScryptPw(user.Password)

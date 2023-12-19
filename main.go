@@ -12,7 +12,7 @@ func main() {
 	core.InitLogger()
 	core.InitGorm()
 	engine := routers.InitRouter()
-	addr := global.CONFIG.System.GetAddr()
+	addr := global.CONFIG.Server.GetAddr()
 	err := engine.Run(addr)
 	if err != nil {
 		global.LOG.Panicf("服务启动失败: %s", err)

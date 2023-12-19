@@ -14,7 +14,14 @@ logger:
   director: log
   show-line: true
   log-in-console: true
-system:
+server:
   host: "0.0.0.0"
   port: 8080
   env: release
+  jwtKey: dad131d1
+cloud:
+  accessKey: ijBXMvzdR8-IyCdNEwXih09FReYNVDFhIBjCLCDL
+  secretKey: T0g3r1FFl5_SOgfPnZzpvraqOjvyb4ZiyjZkpOJz
+  zoneName: ginblogz
+  host: http://s5x5qudhm.hd-bkt.clouddn.com/
+
