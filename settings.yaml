@@ -22,6 +22,6 @@ server:
 cloud:
   accessKey: ijBXMvzdR8-IyCdNEwXih09FReYNVDFhIBjCLCDL
   secretKey: T0g3r1FFl5_SOgfPnZzpvraqOjvyb4ZiyjZkpOJz
-  zoneName: ginblogz
+  bucket: ginblogz
   host: http://s5x5qudhm.hd-bkt.clouddn.com/
 
