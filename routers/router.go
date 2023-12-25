@@ -9,7 +9,8 @@ import (
 
 func InitRouter() *gin.Engine {
 	gin.SetMode(global.CONFIG.Server.Env)
-	r := gin.Default()
+	r := gin.New()
+	r.Use(gin.Recovery(), middleware.Logger())
 	authn := r.Group("api/v1")
 
 	authn.POST("upload", v1.Upload)
