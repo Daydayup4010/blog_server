@@ -3,6 +3,7 @@ package v1
 import (
 	"blog_server/models"
 	"blog_server/utils/errmsg"
+	"blog_server/utils/validator"
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"strconv"
@@ -16,12 +17,20 @@ func UserIfExist(c *gin.Context) {
 func AddUser(c *gin.Context) {
 	var user models.User
 	_ = c.ShouldBindJSON(&user)
-	code := models.CheckUser(user.Username)
+	msg, code := validator.Validate(&user)
+	if code != errmsg.SUCCESS {
+		c.JSON(http.StatusOK, gin.H{
+			"code": code,
+			"msg":  msg,
+		})
+		return
+	}
+
+	code = models.CheckUser(user.Username)
 	if code == errmsg.SUCCESS {
 		models.CreateUser(&user)
 		c.JSON(http.StatusOK, gin.H{
 			"code":    code,
-			"data":    user,
 			"message": errmsg.GetErrMsg(code),
 		})
 	} else {
