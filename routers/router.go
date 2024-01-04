@@ -10,12 +10,11 @@ import (
 func InitRouter() *gin.Engine {
 	gin.SetMode(global.CONFIG.Server.Env)
 	r := gin.New()
-	r.Use(gin.Recovery(), middleware.Logger())
+	r.Use(gin.Recovery(), middleware.Logger(), middleware.Cors())
 	authn := r.Group("api/v1")
-
+	authn.Use(middleware.JwtToken())
 	authn.POST("upload", v1.Upload)
 	public := r.Group("api/v1")
-	public.Use(middleware.JwtToken())
 	// 用户模块的接口
 	user := authn.Group("user")
 	{

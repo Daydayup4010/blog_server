@@ -37,24 +37,27 @@ func GetArtInfo(id int) (Article, int) {
 }
 
 // GetCateArtLis 获取分类下的文章列表
-func GetCateArtLis(cid int, pageSize int, pageNum int) ([]Article, int) {
+func GetCateArtLis(cid int, pageSize int, pageNum int) ([]Article, int, int64) {
 	var cateArt []Article
-	err := global.DB.Preload("Category").Limit(pageSize).Offset((pageNum-1)*pageSize).Where("cid = ?", cid).Find(&cateArt).Error
+	var total int64
+	err := global.DB.Preload("Category").Limit(pageSize).Offset((pageNum-1)*pageSize).Where("cid = ?", cid).Find(&cateArt).Count(&total).Error
 	if err != nil {
-		return cateArt, errmsg.ERROR
+		return cateArt, errmsg.ERROR, 0
 	}
-	return cateArt, errmsg.SUCCESS
+	return cateArt, errmsg.SUCCESS, total
 
 }
 
 // GetArtList 获取文章列表
-func GetArtList(pageSize int, pageNum int) ([]Article, int) {
+func GetArtList(pageSize int, pageNum int) ([]Article, int, int64) {
 	var arts []Article
-	err := global.DB.Preload("Category").Limit(pageSize).Offset((pageNum - 1) * pageSize).Find(&arts).Error
+	var total int64
+	err := global.DB.Preload("Category").Limit(pageSize).Offset((pageNum - 1) * pageSize).Find(&arts).Count(&total).Error
 	if err != nil {
-		return nil, errmsg.ERROR
+		return nil, errmsg.ERROR, 0
 	}
-	return arts, errmsg.SUCCESS
+	return arts, errmsg.SUCCESS, total
+
 }
 
 // DeleteArt 删除文章

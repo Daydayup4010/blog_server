@@ -38,9 +38,9 @@ func VerifyLogin(username string, password string) int {
 	if ScryptPw(password) != user.Password {
 		return errmsg.ERROR_PASSWORD_WRONG
 	}
-	if user.Role != 1 {
-		return errmsg.ERROR_USER_NO_PERMISSION
-	}
+	//if user.Role != 1 {
+	//	return errmsg.ERROR_USER_NO_PERMISSION
+	//}
 	return errmsg.SUCCESS
 }
 
@@ -80,10 +80,11 @@ func CreateUser(user *User) int {
 }
 
 // GetUsers 获取用户列表
-func GetUsers(pageSize int, pageNum int) ([]User, int) {
+func GetUsers(pageSize int, pageNum int) ([]User, int, int64) {
 	var users []User
-	global.DB.Limit(pageSize).Offset((pageNum - 1) * pageSize).Find(&users)
-	return users, errmsg.SUCCESS
+	var total int64
+	global.DB.Limit(pageSize).Offset((pageNum - 1) * pageSize).Find(&users).Count(&total)
+	return users, errmsg.SUCCESS, total
 }
 
 // DeleteUser 删除用户
