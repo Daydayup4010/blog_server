@@ -10,7 +10,7 @@ global: 全局变量
 
 log: 存放gin 接口请求日志
 
-middleware: 云服务, 鉴权token, logger等gin中间件
+middleware: 跨域, 鉴权token, logger等gin中间件
 
 models: 各模块的sql处理
 
