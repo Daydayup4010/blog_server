@@ -17,7 +17,7 @@ const (
 	ERROR_CATEGORYNAME_USED  = 20001
 	ERROR_CATEGORY_NOT_EXIST = 20002
 
-	// code = 3000xxx 分类模块的错误
+	// code = 3000xxx 文章模块的错误
 	ERROR_ARTICLE_NOT_EXIST = 30001
 )
 

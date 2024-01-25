@@ -62,7 +62,7 @@ func CheckUser(name string) int {
 
 func CheckUserFromId(id int) int {
 	var user User
-	affected := global.DB.First(&user, id).RowsAffected
+	affected := global.DB.Where("id = ?", id).First(&user).RowsAffected
 	if affected == 0 {
 		return errmsg.ERROR_USER_NOT_EXIST
 	}
@@ -104,7 +104,7 @@ func DeleteUser(id int) int {
 // GetUserInfo 获取用户详细信息
 func GetUserInfo(id int) (User, int) {
 	var user User
-	err := global.DB.First(&user, id).Error
+	err := global.DB.Where("id =?", id).First(&user, id).Error
 	if err == gorm.ErrRecordNotFound {
 		return User{}, errmsg.ERROR_USER_NOT_EXIST
 	}

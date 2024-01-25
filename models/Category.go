@@ -10,7 +10,7 @@ type Category struct {
 	Name string `gorm:"type:varchar(20);not null" json:"name"`
 }
 
-// CheckCategory 根据name查询用户是否存在
+// CheckCategory 根据name查询分类是否存在
 func CheckCategory(name string) int {
 	var category Category
 	global.DB.Select("id").Where("name = ?", name).First(&category)

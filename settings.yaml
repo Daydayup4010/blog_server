@@ -20,8 +20,8 @@ server:
   env: release
   jwtKey: dad131d1
 cloud:
-  accessKey: ijBXMvzdR8-IyCdNEwXih09FReYNVDFhIBjCLCDL
-  secretKey: T0g3r1FFl5_SOgfPnZzpvraqOjvyb4ZiyjZkpOJz
-  bucket: ginblogz
-  host: http://s5x5qudhm.hd-bkt.clouddn.com/
+  accessKey: ''
+  secretKey: ''
+  bucket: ''
+  host: ''
 
